@@ -1,0 +1,61 @@
+9.	#!/bin/bash
+# Check if at least one filename is provided
+if [ "$#" -eq 0 ]; then
+  echo "Usage: $0 filename1 [filename2 ... filenameN]"
+  exit 1
+fi
+# Loop through each filename passed as an argument
+for file in "$@"; do
+  # Check if the file exists and is readable
+  if [ -r "$file" ]; then
+    # Use wc to count lines, words, and characters
+    echo "File: $file"
+    wc "$file" | awk '{print "Lines: " $1, "Words: " $2, "Characters: " $3}'
+    echo "---------------------------------"
+  else
+    echo "File $file does not exist or is not readable."
+  fi
+Done
+
+#!/bin/bash
+echo "System Information:"
+uname -a
+echo "Disk Usage:"
+df -h
+echo "Memory Usage:"
+free -m
+
+Outputs basic system information, including kernel version, disk usage, and memory usage.
+#!/bin/bash
+echo "Compiling Java files..."
+javac -d bin src/*.java
+if [ $? -eq 0 ]; then
+  echo "Compilation successful."
+else
+  echo "Compilation failed."
+  exit 1
+fi
+Compiles Java files in a src directory and outputs the results to a bin directory.
+
+#!/bin/bash
+echo "Running tests..."
+for test in tests/*.sh; do
+  bash "$test"
+  if [ $? -ne 0 ]; then
+    echo "Test $test failed."
+    exit 1
+  fi
+done
+echo "All tests passed."
+Executes all shell scripts in the tests directory, treating them as test cases. If any test fails, the build fails.
+#!/bin/bash
+echo "Running tests..."
+for test in tests/*.sh; do
+  bash "$test"
+  if [ $? -ne 0 ]; then
+    echo "Test $test failed."
+    exit 1
+  fi
+done
+echo "All tests passed."
+Executes all shell scripts in the tests directory, treating them as test cases. If any test fails, the build fails.
